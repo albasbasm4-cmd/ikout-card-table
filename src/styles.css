@@ -1054,3 +1054,7 @@
 @media (orientation:portrait) and (max-width:560px) {
  .reference-table { width:86%; }
 }
+.reference-trump { top:10px; left:22%; }
+.reference-local-seat { bottom:calc(3% + 20px); }
+.reference-score-mid { margin:0 10px; }
+@media (orientation:landscape) and (max-height:500px) { .reference-local-seat { bottom:18px; } .reference-trump { top:6px; left:20%; } }
