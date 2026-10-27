@@ -10,43 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ZzPreviewTableRouteImport } from './routes/zz-preview-table'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ZzPreviewTableRoute = ZzPreviewTableRouteImport.update({
-  id: '/zz-preview-table',
-  path: '/zz-preview-table',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/zz-preview-table': typeof ZzPreviewTableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/zz-preview-table': typeof ZzPreviewTableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/zz-preview-table': typeof ZzPreviewTableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/zz-preview-table'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/zz-preview-table'
-  id: '__root__' | '/' | '/zz-preview-table'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ZzPreviewTableRoute: typeof ZzPreviewTableRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,19 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/zz-preview-table': {
-      id: '/zz-preview-table'
-      path: '/zz-preview-table'
-      fullPath: '/zz-preview-table'
-      preLoaderRoute: typeof ZzPreviewTableRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ZzPreviewTableRoute: ZzPreviewTableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
